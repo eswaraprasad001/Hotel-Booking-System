@@ -16,6 +16,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 import {ValidateService} from "./services/validate.service";
 import {AuthService} from "./services/auth.service";
 import { AdminComponent } from './components/admin/admin.component';
+import { BookingComponent } from './components/booking/booking.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { AdminComponent } from './components/admin/admin.component';
     HomeComponent,
     DashboardComponent,
     ProfileComponent,
-    AdminComponent
+    AdminComponent,
+    BookingComponent
   ],
   imports: [
     BrowserModule,

@@ -7,12 +7,12 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class HotelServiceService {
 
   authToken: any;
+  static term: null;
 
   constructor(private http: HttpClient) {
     const jwthelper = new JwtHelperService()
    }
 
-  term!: null;
 
   getAllHotels() {
 

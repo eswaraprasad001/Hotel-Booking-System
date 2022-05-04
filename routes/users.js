@@ -78,7 +78,7 @@ router.post('/authenticate', (req, res) => {
 
 // Profile
 router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res) => {
-    res.json({user: req.user});
+    res.json( req.user);
 });
 // router.get('/admin', passport.authenticate('jwt', {session: false}), (req, res) => {
 //     res.json({user: req.user});
@@ -202,21 +202,7 @@ router.post("/api/hotels/search",  passport.authenticate('jwt', {session: false}
 					if (err) {
 						return res.json(err);
 					}
-					if (!bookings.length) {
-						return res.json(hotels); // return all hotels in JSON format
-					}
-					var resultHotels = [];
-					for (var i = hotels.length - 1; i >= 0; i--) {
-						if (bookings.indexOf(hotels[i]) !== -1) {
-							resultHotels.push(hotels);
-						}
-					}
-					if (!resultHotels.length) {
-						return res.json({
-							error: "No hotel found for the given search input. ",
-						});
-					}
-					return res.json(resultHotels); // return all hotels in JSON format
+					return res.json(hotels); // return all hotels in JSON format
 				});
 		});
 });

@@ -19,7 +19,7 @@ export class BookingServiceService {
       'Content-Type':  'application/json',
       'Authorization': this.authToken
     });
-    return this.http.get("/api/bookings",{headers: headers})
+    return this.http.get("http://localhost:3000/users/api/bookings",{headers: headers})
    }
 
    loadToken() {
@@ -32,7 +32,7 @@ export class BookingServiceService {
       'Content-Type':  'application/json',
       'Authorization': this.authToken
     });
-    return this.http.post("/api/bookings", bookingData,{headers: headers});
+    return this.http.post("http://localhost:3000/users/api/bookings", bookingData,{headers: headers});
   }
   deleteBooking(id: string){
     this.loadToken();
@@ -40,7 +40,7 @@ export class BookingServiceService {
       'Content-Type':  'application/json',
       'Authorization': this.authToken
     });
-    return this.http.delete("/api/bookings/" + id,{headers: headers});
+    return this.http.delete("http://localhost:3000/users/api/bookings/" + id,{headers: headers});
   }
 
   }

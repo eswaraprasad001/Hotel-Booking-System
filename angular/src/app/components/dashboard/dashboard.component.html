@@ -1,2 +1,89 @@
 <h2 class="text-center">Dashboard</h2>
 <p class="lead">Welcome to your Dashboard</p>
+
+<div class="row"ng-init="init()">
+    <div class="col-md-12">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row" style="padding-bottom: 10px;">
+                    <div style="padding: 0 8px;" growl></div>
+                    <div class="col-md-3">
+                        <input type="text" [(ngModel)]="term" class="input-sm col-md-12" placeholder="Search Hotel" />
+                    </div>
+                    <div class="col-md-1">
+                        <button class="btn btn-primary btn-block" (click)="searchHotels()" type="button">
+                            Search
+                        </button>
+                    </div>
+                </div>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Search Hotels
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table id="hotels" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>City, State</th>
+                                        <th>zip</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let hotel of hotels">
+                                        <td>{{hotel.name}}</td>
+                                        <td>{{hotel.address}}</td>
+                                        <td>{{hotel.city}} - {{hotel.state}}</td>
+                                        <td>{{hotel.zip}}</td>
+                                        <td><a  [routerLink]="['/profile']"[queryParams]="{_id: hotel._id}">View Hotel</a></td>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Current Booked Hotels
+                    </div>
+                    <div class="panel-body">
+                        <div class="table-responsive">
+                            <table id="bookings" class="table table-striped table-bordered table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Name</th>
+                                        <th>Address</th>
+                                        <th>City, State</th>
+                                        <th>Check In Date</th>
+                                        <th>Check Out Date</th>
+                                        <th>Confirmation Number</th>
+                                        <th>action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr *ngFor="let booking of bookings">
+                                        <td>{{booking.hotel.name}}</td>
+                                        <td>{{booking.hotel.address}}</td>
+                                        <td>{{booking.hotel.city}} - {{booking.hotel.state}}</td>
+                                        <td>{{booking.checkInDate}}</td>
+                                        <td>{{booking.checkOutDate}}</td>
+                                        <td>{{booking._id}}</td>
+                                        <td><a href="/dashboard" (click)="cancelBooking(booking._id)">cancel Booking </a></td>
+                                    <tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

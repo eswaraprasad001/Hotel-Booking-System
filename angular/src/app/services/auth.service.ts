@@ -4,16 +4,17 @@ import { HttpClient, HttpHeaders} from "@angular/common/http";
 import { JwtHelperService } from '@auth0/angular-jwt'
 import 'rxjs';
 
+const jwtHelper = new JwtHelperService();
 @Injectable()
 export class AuthService {
-  authToken: any;
+  authToken: any|undefined;
   user: any;
-  jwthelper: any;
+
   
   constructor(private http: HttpClient) {
-    const jwthelper = new JwtHelperService()
-   }
 
+   }
+   
   /**
    * POST registered user to back-end
    * @param user - the new user registered
@@ -80,18 +81,19 @@ export class AuthService {
   }
 
   loggedIn() {
-    return this.tokenNotExpired();
+    //const token = JSON.parse(localStorage.getItem('id_token') || '{}');
+// console.log(this.authToken)
+    // Check if the token is expired and return true or false
+    // console.log();
+    return !jwtHelper.isTokenExpired(this.authToken);
   }
 
 
- tokenNotExpired() {
+//  tokenNotExpired() {
 
-    // const token: string =this.authToken;
-    // console.log(token)
-    // console.log( token != null && !this.jwthelper.isTokenExpired(token))
-    // return token != null && !this.jwthelper.isTokenExpired(token);
-    return true
-  }
+//     // console.log( token != null && this.jwthelper.isTokenExpired(token))
+//     return 'id_token' != null && this.jwthelper.isTokenExpired('id_token');
+//   }
 
   /**
    * Log user out
@@ -103,7 +105,7 @@ export class AuthService {
   }
 
 
-  
+
 
 
 }

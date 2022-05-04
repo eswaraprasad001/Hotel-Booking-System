@@ -21,6 +21,7 @@
     "@angular/router": "~13.3.0",
     "@auth0/angular-jwt": "^5.0.2",
     "angular2-flash-messages": "^3.0.1",
+    "angular2-jwt": "^0.2.3",
     "rxjs": "~7.5.0",
     "rxjs-compat": "^6.6.7",
     "tslib": "^2.3.0",
