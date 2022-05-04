@@ -15,6 +15,7 @@ import { ProfileComponent } from './components/profile/profile.component';
 
 import {ValidateService} from "./services/validate.service";
 import {AuthService} from "./services/auth.service";
+import { AdminComponent } from './components/admin/admin.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import {AuthService} from "./services/auth.service";
     RegisterComponent,
     HomeComponent,
     DashboardComponent,
-    ProfileComponent
+    ProfileComponent,
+    AdminComponent
   ],
   imports: [
     BrowserModule,

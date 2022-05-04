@@ -64,9 +64,15 @@ export class AuthService {
     this.user = user;
   }
 
-  /**
+  isAdmin(){
+    // if(this.user.isAdmin==true){
+      return true;
+    // }
+  }
+  /** 
    * load token from local storage to use
    * in getProfile()
+   * angular\src\app\components
    */
   loadToken() {
     const token = localStorage.getItem('id_token');
@@ -95,4 +101,9 @@ export class AuthService {
     this.user = null;
     localStorage.clear();
   }
+
+
+  
+
+
 }

@@ -37,9 +37,16 @@ export class LoginComponent implements OnInit {
 
     this.authService.authenticateUser(user).subscribe((data: any) => {
       if (data.success) {
+        if(data.user.isAdmin===true){
+          this.authService.storeUserData(data.token, data.user);
+          this.flashMessagesService.show('You are now logged in as Admin', {cssClass: 'alert-success', timeout: 5000});
+          this.router.navigate(['admin']);
+        }
+        else{
         this.authService.storeUserData(data.token, data.user);
         this.flashMessagesService.show('You are now logged in', {cssClass: 'alert-success', timeout: 5000});
         this.router.navigate(['dashboard']);
+      }
       } else {
         this.flashMessagesService.show(data.msg, {cssClass: 'alert-danger', timeout: 5000});
         this.router.navigate(['login']);
