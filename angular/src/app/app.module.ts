@@ -11,8 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { HomeComponent } from './components/home/home.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component';
-
-
+import { NgSelectModule } from '@ng-select/ng-select';
 import {ValidateService} from "./services/validate.service";
 import {AuthService} from "./services/auth.service";
 import { AdminComponent } from './components/admin/admin.component';
@@ -35,6 +34,7 @@ import { BookingComponent } from './components/booking/booking.component';
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    NgSelectModule,
     FlashMessagesModule.forRoot()
   ],
   providers: [ValidateService, AuthService],
