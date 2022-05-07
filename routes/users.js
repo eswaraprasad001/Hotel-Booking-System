@@ -183,7 +183,7 @@ router.post("/api/admin/hotels", passport.authenticate('jwt', {session: false}),
 
 router.post("/api/hotels/search",  passport.authenticate('jwt', {session: false}), function (req, res) {
 	var regex = new RegExp(req.body.term, "i"); // 'i' makes it case insensitive
-	Hotel.find({ name: regex })
+	Hotel.find({ city: regex })
 		.where("roomCount")
 		.gt(0)
 		.sort("name")

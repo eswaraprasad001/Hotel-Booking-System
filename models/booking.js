@@ -10,16 +10,16 @@ var Schema = mongoose.Schema;
  * @type {Schema}
  */
 var bookingSchema = new Schema({
-	creditCardName: String,
-	creditCard: String,
-	securityCode: Number,
-	month: Number,
-	year: Number,
-	roomType: String,
-	checkInDate: Date,
-	checkOutDate: Date,
-	hotel: { type: Schema.Types.ObjectId, ref: "Hotel" },
-	user: { type: Schema.Types.ObjectId, ref: "User" },
+		name:String,
+		email:String,
+		PhoneNo:String,
+	 	noOfRooms:Number,
+	 	guests:Number,
+		roomType: String,
+		checkInDate: Date,
+		checkOutDate: Date,
+		hotel: { type: Schema.Types.ObjectId, ref: "Hotel" },
+		user: { type: Schema.Types.ObjectId, ref: "User" },
 });
 
 // create the model for users and expose it to our app

@@ -12,46 +12,20 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
+  display=true;
   currentbooking :any ;
   currenthotel : any;
-  currentYear = new Date().getFullYear();
-  currentMonth = new Date().getMonth() + 1;
   hotelid!: any
   confirmBooking!:any
   test:any;
-  months = ["January", "February", "March", "April", "May", "June",
-  "July", "August", "September", "October", "November", "December"
-];
-  options = [
-    {
-      name: "Single Bed",
-      type: "basic",
-    },
-    {
-      name: "Double Bed",
-      type: "basic",
-    },
-    {
-      name: "Double Bed",
-      type: "deluxe",
-    },
-    {
-      name: "King Size Bed",
-      type: "Maharaja",
-    },
-    {
-      name: "Suite",
-      type: "Lake View",
-    },
-  ];
-  creditCardName="eswar";
-  checkInDate= '2022-05-04T00:00:00.000+00:00';
-  checkOutDate= '2022-06-04T00:00:00.000+00:00';
-  month= 2;
-  year=2025;
-  roomType="basic";
-  creditCard=5469938123938171;
-  securityCode=123;
+  name:any
+  email:any
+  PhoneNo:any
+   noOfRooms:any
+   guests:any
+  roomType: any
+  checkInDate=new Date()
+  checkOutDate=new Date()
   hotelBooking:any;
   constructor(private route: ActivatedRoute,private hotel:HotelServiceService,
     private booking:BookingServiceService,private router: Router, private flashMessagesService: FlashMessagesService) { }
@@ -72,14 +46,14 @@ export class BookingComponent implements OnInit {
 
   bookHotel(){
     const newBooking = {
-      month: this.month,
-      year: this.year,
-      roomType: this.roomType,
-      creditCard: this.creditCard,
-      securityCode: this.securityCode,
-      checkOutDate: this.checkOutDate,
-      checkInDate: this.checkInDate,
-      creditCardName: this.creditCardName,
+    name:this.name,
+    email:this.email,
+    PhoneNo:this.PhoneNo,
+    noOfRooms:this.noOfRooms,
+    guests:this.guests,
+    roomType: this.roomType,
+    checkInDate: this.checkInDate,
+    checkOutDate: this.checkOutDate,
       hotel: this.currenthotel
     };
     console.log(newBooking)
@@ -96,12 +70,8 @@ export class BookingComponent implements OnInit {
     this.flashMessagesService.show('You are now logged in as Admin', {cssClass: 'alert-success', timeout: 5000});
     this.router.navigate(['dashboard']);
   }
-
-	proceed(){
-		if (true) 
-    {
-			this.confirmBooking = true;
-		}
-		};
+  proceed(){
+    this.display=!this.display
+  }
 
 }

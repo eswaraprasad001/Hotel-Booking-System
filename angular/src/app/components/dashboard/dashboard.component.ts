@@ -10,21 +10,27 @@ import { BookingServiceService } from 'src/app/services/booking-service.service'
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
+  allHotels!:any[];
   hotels!:any[];
   bookings!:any[] ;
   term=HotelServiceService.term;
+  isSearch=true;
 
   constructor(private hotel:HotelServiceService,
     private user:UserServiceService,
     private booking:BookingServiceService) { }
 
   ngOnInit() {
+
+    this.hotel.getAllHotels().subscribe((data:any)=>{
+      this.allHotels=data;
+      console.log(this.allHotels)
+    })
       this.booking.getBooking().subscribe((data:any)=> {
         var bookings = data;
         if (bookings) {
           this.hotel.getAllHotels().subscribe((dataHotels:any)=> {
-            console.log(bookings)
+            console.log(this.hotels)
             for (var i = 0; i < bookings.length; i += 1) {
               var booking = bookings[i];
               bookings[i].hotel = this.getById(dataHotels, booking.hotel);
@@ -48,6 +54,7 @@ export class DashboardComponent implements OnInit {
           this.hotels = data;
           HotelServiceService.term = this.term;
         }
+        this.isSearch=!this.isSearch;
       });
     }
     cancelBooking(id: any) {
