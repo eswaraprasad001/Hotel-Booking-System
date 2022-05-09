@@ -4,6 +4,8 @@ import { BookingServiceService } from 'src/app/services/booking-service.service'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from "@angular/router";
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { isPlatformBrowser } from '@angular/common';
+import { AfterViewInit,  ElementRef, Inject, Input, PLATFORM_ID, ViewChild } from '@angular/core';
 
 
 @Component({
@@ -12,24 +14,26 @@ import { FlashMessagesService } from 'angular2-flash-messages';
   styleUrls: ['./booking.component.css']
 })
 export class BookingComponent implements OnInit {
+
   display=true;
   currentbooking :any ;
   currenthotel : any;
   hotelid!: any
   confirmBooking!:any
-  test:any;
-  name:any
-  email:any
-  PhoneNo:any
-   noOfRooms:any
-   guests:any
-  roomType: any
-  checkInDate=new Date()
-  checkOutDate=new Date()
+  name!:any
+  email!:any
+  PhoneNo!:any
+  noOfRooms!:any
+  guests!:any
+  roomType!: any
+  checkInDate!:Date
+  checkOutDate!:Date
   hotelBooking:any;
   constructor(private route: ActivatedRoute,private hotel:HotelServiceService,
     private booking:BookingServiceService,private router: Router, private flashMessagesService: FlashMessagesService) { }
+    
 
+    
   ngOnInit(): void {
     this.route.queryParams
     .subscribe(params => {
@@ -40,7 +44,7 @@ export class BookingComponent implements OnInit {
     ); 
       this.hotel.getHotel(this.hotelid).subscribe((data)=> {
         this.currenthotel = data;
-        console.log(this.currenthotel)
+        //console.log(this.currenthotel)
       });
   }
 
@@ -57,8 +61,6 @@ export class BookingComponent implements OnInit {
       hotel: this.currenthotel
     };
     console.log(newBooking)
-    console.log(newBooking.hotel)
-    console.log( this.hotel)
     this.booking.createBooking(newBooking).subscribe((data:any)=> {
       if(data.success){
         console.log(data);

@@ -12,7 +12,7 @@ var Schema = mongoose.Schema;
 var bookingSchema = new Schema({
 		name:String,
 		email:String,
-		PhoneNo:String,
+		PhoneNo:Number,
 	 	noOfRooms:Number,
 	 	guests:Number,
 		roomType: String,

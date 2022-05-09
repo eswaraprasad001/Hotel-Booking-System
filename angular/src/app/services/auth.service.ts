@@ -3,11 +3,13 @@ import { HttpClient, HttpHeaders} from "@angular/common/http";
 // import { tokenNotExpired } from "angular2-jwt";
 import { JwtHelperService } from '@auth0/angular-jwt'
 import 'rxjs';
+import { tap } from 'rxjs';
 
 const jwtHelper = new JwtHelperService();
 @Injectable()
 export class AuthService {
   authToken: any|undefined;
+   refreshToken : any|undefined
   user: any;
 
   
@@ -58,12 +60,34 @@ export class AuthService {
    * @param token - Auth token
    * @param user - the user logged in
    */
-  storeUserData(token: string, user: any) {
+  storeUserData(token: string, user: any,refreshToken:any) {
     localStorage.setItem('id_token', token);
+    localStorage.setItem('refresh_token', refreshToken);
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
+    this.refreshToken=refreshToken;
   }
+  refreshtoken() {
+    return this.http.post<any>('http://localhost:3000/users//refresh', {
+      'refreshToken': this.refreshToken
+    })
+    
+  }
+
+  setToken(token:any){
+    const jwt=this.refreshtoken().subscribe((data)=>{
+      token=data
+      console.log(data)
+    })
+    localStorage.setItem('id_token', token)
+    this.authToken=jwt;
+
+  }
+  getJwtToken() {
+    return localStorage.getItem('id_token');
+  }
+
 
   isAdmin(){
     // if(this.user.isAdmin==true){
@@ -85,6 +109,7 @@ export class AuthService {
 // console.log(this.authToken)
     // Check if the token is expired and return true or false
     // console.log();
+    console.log(this.authToken)
     return !jwtHelper.isTokenExpired(this.authToken);
   }
 

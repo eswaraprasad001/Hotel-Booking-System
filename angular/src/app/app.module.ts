@@ -16,6 +16,7 @@ import {ValidateService} from "./services/validate.service";
 import {AuthService} from "./services/auth.service";
 import { AdminComponent } from './components/admin/admin.component';
 import { BookingComponent } from './components/booking/booking.component';
+import { TokenInterceptor } from './services/token.interceptor';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,7 @@ import { BookingComponent } from './components/booking/booking.component';
     NgSelectModule,
     FlashMessagesModule.forRoot()
   ],
-  providers: [ValidateService, AuthService],
+  providers: [ValidateService, AuthService,TokenInterceptor],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

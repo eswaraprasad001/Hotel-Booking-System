@@ -21,11 +21,11 @@
     "jsonwebtoken": "^8.1.1",
     "mongoose": "^5.0.7",
     "passport": "^0.4.0",
-    "passport-jwt": "^3.0.1"
+    "passport-jwt": "^3.0.1",
+    "rand-token": "^1.0.1"
   },
   "bugs": {
     "url": "https://github.com/eswaraprasad001/Hotel-Booking-System/issues"
   },
   "homepage": "https://github.com/eswaraprasad001/Hotel-Booking-System#readme"
-
 }

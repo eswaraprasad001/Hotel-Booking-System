@@ -3,6 +3,7 @@ const passport = require('passport');
 const jwt = require('jsonwebtoken');
 const bodyParser = require('body-parser');
 const router = express.Router();
+const randtoken = require('rand-token');
 const app = express();
 app.use(bodyParser.json());
 var User = require("../models/user");
@@ -10,6 +11,8 @@ var Hotel = require("../models/hotel");
 var Booking = require("../models/booking");
 const config = require("../config/database");
 app.set('view engine', 'html');
+
+const refreshTokens = {};
 
 function isAdminLoggedIn(req, res, next) {
 	if (req.isAuthenticated() && req.user.isAdmin === true) {
@@ -57,10 +60,13 @@ router.post('/authenticate', (req, res) => {
                 const token = jwt.sign(user.toObject(), config.secret, {
                     expiresIn: '604800' // 1 week
                 });
+				const refreshToken = randtoken.uid(256);
+				refreshTokens[refreshToken] = user.email;
 
                 res.json({
                     success: true,
                     token: `Bearer ${token}`,
+					refreshToken: refreshToken,
                     user: {
                         id: user._id,
                         email: user.email,
@@ -88,6 +94,22 @@ router.get('/profile', passport.authenticate('jwt', {session: false}), (req, res
 router.post("/logout", function (req, res) {
 	req.logout();
 	res.json({ success: "You have been logout successfully!!!." });
+});
+
+router.post('/refresh', function (req, res) {
+    const refreshToken = req.body.refreshToken;
+    
+
+    if (refreshToken in refreshTokens) {
+      const user = {
+        'email': refreshTokens[refreshToken]
+      }
+      const token = jwt.sign(user, config.secret,{ expiresIn: 600 });
+      res.json({jwt: token})
+    }
+    else {
+      res.sendStatus(401);
+    }
 });
 
 /**
@@ -236,11 +258,11 @@ router.post("/api/bookings", passport.authenticate('jwt', {session: false}), fun
 					throw err;
 				}
 				var booking = new Booking();
-				booking.creditCardName = req.body.creditCardName;
-				booking.creditCard = req.body.creditCard;
-				booking.securityCode = req.body.securityCode;
-				booking.month = req.body.month;
-				booking.year = req.body.year;
+				booking.name= req.body.name,
+				booking.email= req.body.email,
+				booking.PhoneNo= req.body.PhoneNo,
+				booking.noOfRooms= req.body.noOfRooms,
+				booking.guests= req.body.guests,
 				booking.roomType = req.body.roomType;
 				booking.checkInDate = new Date(req.body.checkInDate);
 				booking.checkOutDate = new Date(req.body.checkOutDate);
