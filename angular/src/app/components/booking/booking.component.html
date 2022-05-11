@@ -147,27 +147,29 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
+                                            <label for="name">Name</label>
 											<input [(ngModel)]='name'class="form-control" type="text"  name="name">
-											<span class="form-label">Name</span>
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
+                                            <label for="Email">Email</label>
 											<input [(ngModel)]='email' class="form-control" type="email"  name="email">
-											<span class="form-label">Email</span>
+											
 										</div>
 									</div>
 								</div>
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
+                                            <label for="Phone">Phone</label>
 											<input [(ngModel)]='PhoneNo' class="form-control" type="tel" name="PhoneNo">
-											<span class="form-label">Phone</span>
+											
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<span class="form-label">Rooms</span>
+											<label for="Rooms">Rooms</label>
                                             <select class="form-control" [(ngModel)]="noOfRooms" name="noOfRooms">
 												<option>1</option>
 												<option>2</option>
@@ -180,7 +182,7 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
-											<span class="form-label">Guests</span>
+											<label for="Guests">Guests</label>
 											<select [(ngModel)]="guests" class="form-control" name="guests">
 												<option>1</option>
 												<option>2</option>
@@ -191,7 +193,7 @@
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
-											<span class="form-label">Room Type</span>
+											<label for="RoomType">Room Type</label>
 											<select [(ngModel)]="roomType" class="form-control" name="roomType">
 												<option>Single Room</option>
 												<option>Deluxe Room</option>
@@ -235,14 +237,16 @@
 								<div class="row">
 									<div class="col-md-6">
 										<div class="form-group">
+                                            <label for="CheckIn">Check In</label>
 											<input [(ngModel)]="checkInDate"class="form-control" type="date" required name="checkInDate">
-											<span class="form-label">Check In</span>
+											
 										</div>
 									</div>
 									<div class="col-md-6">
 										<div class="form-group">
+                                            <label for="CheckOut">Check Out</label>
 											<input  [(ngModel)]="checkOutDate" class="form-control" type="date" required  name="checkOutDate">
-											<span class="form-label">Check Out</span>
+						
 										</div>
 									</div>
 								</div>
@@ -262,14 +266,14 @@
 </html>
 
 
-<p>{{name}}</p>
+<!-- <p>{{name}}</p>
 <p>{{email}}</p>
 <p>{{PhoneNo}}</p>
 <p>{{noOfRooms}}</p>
 <p>{{guests}}</p>
 <p>{{roomType}}</p>
 <p>{{checkInDate}}</p>
-<p>{{checkOutDate}}</p>
+<p>{{checkOutDate}}</p> -->
 </div>
 
 
