@@ -2,7 +2,7 @@
 
 :root{
     --transition: all 0.7s ease;
-    --yellow: #f9d342;
+    --yellow: #f7c08a;
     --dark: #292826;
 }
 *{
@@ -29,6 +29,7 @@ body{
     margin: 15px auto;
     cursor: pointer;
     transition: var(--transition);
+	background-color:#f7c08a
 }
 .btn:hover{
     opacity: 0.85;
@@ -181,7 +182,7 @@ img{
 	right: 0;
 	bottom: 0;
 	top: 0;
-	background: rgba(255, 255, 255, 0.8);
+	/* background: rgba(255, 255, 255, 0.8); */
 }
 
 .booking-cta {

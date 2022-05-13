@@ -9,6 +9,8 @@ import {ProfileComponent} from "./components/profile/profile.component";
 import { AuthGuard } from "./guards/auth.guard";
 import { AdminComponent } from './components/admin/admin.component';
 import { BookingComponent } from './components/booking/booking.component';
+import { ViewBookingComponent } from './components/view-booking/view-booking.component';
+
 
 const routes: Routes = [
   { path: '', component: HomeComponent},
@@ -17,8 +19,9 @@ const routes: Routes = [
   { path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard] },
   { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
   { path: 'booking', component: BookingComponent, canActivate: [AuthGuard] },
-  // { path: '**', redirectTo: '', pathMatch: 'full'},
-  { path: 'admin',component: AdminComponent,canActivate: [AuthGuard] }
+  // {path: '**', redirectTo: '', pathMatch: 'full'},
+  { path: 'admin',component: AdminComponent,canActivate: [AuthGuard] },
+  { path: 'mybooking',component: ViewBookingComponent,canActivate: [AuthGuard] }
 ];
 
 @NgModule({

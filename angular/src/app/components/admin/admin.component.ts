@@ -18,6 +18,7 @@ export class AdminComponent implements OnInit {
  state!: String
  rate!: Number
  roomCount!: Number
+ url!:String
 
   constructor(private hotel:HotelServiceService,
               private user:UserServiceService) { }
@@ -42,7 +43,8 @@ export class AdminComponent implements OnInit {
       city: this.city,
       state: this.state,
       rate: this.rate,
-      roomCount: this.roomCount
+      roomCount: this.roomCount,
+      url:this.url
     }
     console.log(hotelData)
 

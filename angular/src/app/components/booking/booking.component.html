@@ -39,7 +39,7 @@
                         <p class = "rate">
                             <span>₹1300.00 /</span> Per Night
                         </p>
-                        <button type = "button" (click)="proceed()" class = "btn">book now</button>
+                        <button type = "button" (click)="proceed()" [routerLink]="['/booking']" [queryParams]="{_id:hotelid,roomType:'Single Room',rate:'1300' }"  class = "btn">book now</button>
                     </div>
                 </article>
                 <article class = "room">
@@ -66,7 +66,7 @@
                         <p class = "rate">
                             <span>₹2500.00 /</span> Per Night
                         </p>
-                        <button type = "button"  (click)="proceed()" class = "btn">book now</button>
+                        <button type = "button"  (click)="proceed()" [routerLink]="['/booking']" [queryParams]="{_id:hotelid,roomType:'Deluxe Room',rate:'2500' }" class = "btn">book now</button>
                     </div>
                 </article>
                 <article class = "room">
@@ -95,7 +95,7 @@
                         <p class = "rate">
                             <span>₹10000.00 /</span> Per Night
                         </p>
-                        <button type = "button" (click)="proceed()" class = "btn">book now</button>
+                        <button type = "button" (click)="proceed()" [routerLink]="['/booking']" [queryParams]="{_id:hotelid,roomType:'Suite Room',rate:'10000' }"  class = "btn">book now</button>
                     </div>
                 </article>
             </div>
@@ -250,9 +250,13 @@
 										</div>
 									</div>
 								</div>
+                                <div  text-center>
+                                    <h3><span style="color:rgba(0, 0, 0, 0.2)">Rate:</span> ₹ {{finalRate}}</h3>
+                                </div>
 								<div class="form-btn">
-									<button class="submit-btn" (click)="bookHotel()">Book Now</button>
+									<button class="submit-btn"  (click)="singleClick($event)" (dblclick)="doubleClick($event)">Book Now</button>
 								</div>
+                                <p  style="color:red"><small>* Double click to Make your booking.</small></p>
 							</form>
 						</div>
 					</div>
@@ -265,15 +269,6 @@
 
 </html>
 
-
-<!-- <p>{{name}}</p>
-<p>{{email}}</p>
-<p>{{PhoneNo}}</p>
-<p>{{noOfRooms}}</p>
-<p>{{guests}}</p>
-<p>{{roomType}}</p>
-<p>{{checkInDate}}</p>
-<p>{{checkOutDate}}</p> -->
 </div>
 
 

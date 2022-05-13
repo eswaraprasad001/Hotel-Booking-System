@@ -18,6 +18,7 @@ var bookingSchema = new Schema({
 		roomType: String,
 		checkInDate: Date,
 		checkOutDate: Date,
+		finalAmount:Number,
 		hotel: { type: Schema.Types.ObjectId, ref: "Hotel" },
 		user: { type: Schema.Types.ObjectId, ref: "User" },
 });

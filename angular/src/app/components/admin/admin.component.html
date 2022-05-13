@@ -81,6 +81,11 @@
 								<input type="text" class="col-md-4" [(ngModel)]="roomCount" name="roomCount"
 									placeholder="Room Count" required data-ng-pattern="/^[0-9]+$/">
 							</div>
+							<div class="row control-group required-asterisk" style="padding-top: 5px;">
+								<label class="col-md-5 control-label">url</label>
+								<input type="text" class="col-md-4" [(ngModel)]="url" name="url"
+									placeholder="url">
+							</div>
 							<div class="row has-error" ng-show="hotelForm.submitAttempt && !hotelForm.$valid">
 								<div class="col-md-offset-5 col-md-3">
 									<span class="help-block" ng-show="hotelForm.roomCount.$error.pattern">Room Count

@@ -23,6 +23,9 @@
         <li *ngIf="authService.loggedIn()" class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/profile']">Profile</a>
         </li>
+        <li *ngIf="authService.loggedIn()" class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/mybooking']">MyBooking</a>
+        </li>
         <!-- /Hide if not logged in -->
   
         <!-- Hide if logged in -->

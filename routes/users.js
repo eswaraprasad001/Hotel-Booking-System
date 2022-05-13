@@ -266,6 +266,7 @@ router.post("/api/bookings", passport.authenticate('jwt', {session: false}), fun
 				booking.roomType = req.body.roomType;
 				booking.checkInDate = new Date(req.body.checkInDate);
 				booking.checkOutDate = new Date(req.body.checkOutDate);
+				booking.finalAmount = req.body.finalAmount;
 				booking.hotel = hotel;
 				booking.user = req.user;
 				booking.save(function (err) {

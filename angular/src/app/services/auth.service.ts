@@ -16,12 +16,7 @@ export class AuthService {
   constructor(private http: HttpClient) {
 
    }
-   
-  /**
-   * POST registered user to back-end
-   * @param user - the new user registered
-   * @returns {Observable<Object>} - POST data
-   */
+
   registerUser(user:  {
     "firstname":string,
     "lastname": string,
@@ -34,11 +29,7 @@ export class AuthService {
     return this.http.post('http://localhost:3000/users/register', user, {headers: headers});
   }
 
-  /**
-   * POST to authenticate user logging in
-   * @param user - the user logging in
-   * @returns {Observable<Object>} - POST data
-   */
+
   authenticateUser(user: { email: string; password: string; }) {
     const headers = new HttpHeaders({
       'Content-Type':  'application/json'
@@ -57,8 +48,6 @@ export class AuthService {
 
   /**
    * Store user session data
-   * @param token - Auth token
-   * @param user - the user logged in
    */
   storeUserData(token: string, user: any,refreshToken:any) {
     localStorage.setItem('id_token', token);
@@ -89,11 +78,6 @@ export class AuthService {
   }
 
 
-  isAdmin(){
-    // if(this.user.isAdmin==true){
-      return true;
-    // }
-  }
   /** 
    * load token from local storage to use
    * in getProfile()
@@ -101,16 +85,22 @@ export class AuthService {
    */
   loadToken() {
     const token = localStorage.getItem('id_token');
+    console.log(token)
     this.authToken = token;
+    // console.log(this.authToken)
   }
 
   loggedIn() {
     //const token = JSON.parse(localStorage.getItem('id_token') || '{}');
-// console.log(this.authToken)
+    // console.log(this.authToken)
     // Check if the token is expired and return true or false
     // console.log();
-    console.log(this.authToken)
-    return !jwtHelper.isTokenExpired(this.authToken);
+    // console.log(this.authToken)
+    // console.log(jwtHelper.isTokenExpired(this.authToken))
+    const token= localStorage.getItem('id_token') || undefined;
+    // console.log(token)
+    // console.log(!jwtHelper.isTokenExpired(token))
+    return !jwtHelper.isTokenExpired(token);
   }
 
 

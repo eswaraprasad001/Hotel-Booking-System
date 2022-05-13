@@ -17,6 +17,7 @@ import {AuthService} from "./services/auth.service";
 import { AdminComponent } from './components/admin/admin.component';
 import { BookingComponent } from './components/booking/booking.component';
 import { TokenInterceptor } from './services/token.interceptor';
+import { ViewBookingComponent } from './components/view-booking/view-booking.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { TokenInterceptor } from './services/token.interceptor';
     DashboardComponent,
     ProfileComponent,
     AdminComponent,
-    BookingComponent
+    BookingComponent,
+    ViewBookingComponent
   ],
   imports: [
     BrowserModule,

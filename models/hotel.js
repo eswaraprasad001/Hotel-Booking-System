@@ -17,6 +17,7 @@ var hotelSchema = new Schema({
 	state: String,
 	rate: Number,
 	roomCount: Number,
+	url:String
 });
 
 /**
