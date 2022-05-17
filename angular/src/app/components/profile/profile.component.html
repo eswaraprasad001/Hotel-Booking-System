@@ -1,4 +1,52 @@
-<div *ngIf="user">
+<body>
+<script src="https://kit.fontawesome.com/b99e675b6e.js"></script>
+<div class="background">
+<div class="wrapper col-sm-5 col-md-2 col-lg-12">
+    <div class="left">
+        <img src="https://static.vecteezy.com/system/resources/previews/002/275/816/large_2x/cartoon-avatar-of-smiling-beard-man-profile-icon-vector.jpg" alt="user" width="100">
+        <h1>{{user.firstname}} {{user.lastname}}</h1>
+         <h2>Staycation User</h2>
+    </div>
+    <div class="right">
+        <div class="info">
+            <h3>Profile</h3>
+            <div class="info_data">
+                 <div class="data">
+                    <h2>FirstName</h2>
+                   <br>
+                    <h4> {{user.firstname}}</h4>
+                 </div>
+                 <div class="data">
+                   <h2>LastName</h2>
+                   <br>
+                    <h4> {{user.lastname}}</h4>
+              </div>
+            </div>
+        </div>
+      
+      <div class="projects">
+            <h3>User Details</h3>
+            <div class="projects_data">
+                 <div class="data">
+                    <h2>UserName</h2>
+                   <br>
+                    <h4>{{user.firstname}} {{user.lastname}}</h4>
+                 </div>
+                 <div class="data">
+                  <h2>Email</h2>
+                   <br>
+                    <h4>{{user.email}}</h4>
+            </div>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+</body>
+
+
+
+<!-- <div *ngIf="user">
   <h2 class="text-center">Welcome</h2>
   <ul class="list-group">
     <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -9,4 +57,4 @@
     </li>
 
   </ul>
-</div>
+</div> -->

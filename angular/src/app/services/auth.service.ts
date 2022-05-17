@@ -11,6 +11,7 @@ export class AuthService {
   authToken: any|undefined;
    refreshToken : any|undefined
   user: any;
+  admin=true;
 
   
   constructor(private http: HttpClient) {
@@ -46,6 +47,7 @@ export class AuthService {
     return this.http.get('http://localhost:3000/users/profile', {headers: headers});
   }
 
+
   /**
    * Store user session data
    */
@@ -55,6 +57,7 @@ export class AuthService {
     localStorage.setItem('user', JSON.stringify(user));
     this.authToken = token;
     this.user = user;
+    // this.admin=this.user.isAdmin;
     this.refreshToken=refreshToken;
   }
   refreshtoken() {
@@ -97,18 +100,22 @@ export class AuthService {
     // console.log();
     // console.log(this.authToken)
     // console.log(jwtHelper.isTokenExpired(this.authToken))
+    // console.log(this.admin)
     const token= localStorage.getItem('id_token') || undefined;
     // console.log(token)
     // console.log(!jwtHelper.isTokenExpired(token))
     return !jwtHelper.isTokenExpired(token);
   }
 
+  // isAdmin(){
+  // if(this.user.isAdmin===true){
+  // return true
+  // }
+  // else{
+  //   return false
+  // }
+  // }
 
-//  tokenNotExpired() {
-
-//     // console.log( token != null && this.jwthelper.isTokenExpired(token))
-//     return 'id_token' != null && this.jwthelper.isTokenExpired('id_token');
-//   }
 
   /**
    * Log user out

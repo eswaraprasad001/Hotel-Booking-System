@@ -21,6 +21,8 @@ function isAdminLoggedIn(req, res, next) {
 	res.send("Not a Admin");
 }
 
+
+
 // Register
 router.post('/register', (req, res) => {
     let newUser = new User({
@@ -145,6 +147,30 @@ router.delete("/api/admin/users/:id", passport.authenticate('jwt',{session: fals
 			user.remove();
 			return res.json({ redirect: "/admin" });
 		} else {
+			return res.json(err);
+		}
+	});
+});
+router.delete("/api/admin/hotels/:id",passport.authenticate('jwt',{session: false}), isAdminLoggedIn, function (req, res) {
+	Hotel.findOne({ _id: req.params.id }).exec(function (err, hotel) {
+		if (err) {
+			return res.json(err);
+		}
+		if (hotel) {
+			hotel.remove();
+			return res.json({ redirect: "/admin" });
+		} else {
+			return res.json(err);
+		}
+	});
+});
+
+router.put("/api/admin/updatehotel/:id",passport.authenticate('jwt',{session: false}), isAdminLoggedIn, function (req, res) {
+	Hotel.findByIdAndUpdate({ _id: req.params.id },req.body).exec(function (err, hotel) {
+		if (err) {
+			return res.json(err);
+		} 
+		else {
 			return res.json(err);
 		}
 	});

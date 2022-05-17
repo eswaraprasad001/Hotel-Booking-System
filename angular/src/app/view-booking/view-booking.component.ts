@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { BookingServiceService } from 'src/app/services/booking-service.service';
-import { HotelServiceService } from 'src/app/services/hotel-service.service';
-import { UserServiceService } from 'src/app/services/user-service.service';
+import { BookingServiceService } from '../services/booking-service.service';
+import { HotelServiceService } from '../services/hotel-service.service';
+import { UserServiceService } from '../services/user-service.service';
 import { DatePipe } from '@angular/common';
+
 @Component({
   selector: 'app-view-booking',
   templateUrl: './view-booking.component.html',
@@ -55,7 +56,6 @@ export class ViewBookingComponent implements OnInit {
       location.reload();
     });
   };
-
 
 
 }

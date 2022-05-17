@@ -17,17 +17,19 @@
       </label>
       <ul>
         <!-- Hide if not logged in -->
-        <li *ngIf="authService.loggedIn()" class="nav-item">
+        <li *ngIf="authService.loggedIn() && !authService.admin" class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/dashboard']">Dashboard</a>
         </li>
         <li *ngIf="authService.loggedIn()" class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/profile']">Profile</a>
         </li>
-        <li *ngIf="authService.loggedIn()" class="nav-item">
-          <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/mybooking']">MyBooking</a>
+        <li *ngIf="authService.loggedIn() && !authService.admin" class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/viewBooking']">MyBooking</a>
+        </li>
+        <li *ngIf="authService.loggedIn() && authService.admin" class="nav-item">
+          <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/admin']">Admin Panel</a>
         </li>
         <!-- /Hide if not logged in -->
-  
         <!-- Hide if logged in -->
         <li *ngIf="!authService.loggedIn()" class="nav-item">
           <a class="nav-link" [routerLinkActive]="['active']" [routerLink]="['/login']">Login</a>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelServiceService } from 'src/app/services/hotel-service.service';
 import { UserServiceService } from 'src/app/services/user-service.service';
+import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-admin',
   templateUrl: './admin.component.html',
@@ -19,8 +20,20 @@ export class AdminComponent implements OnInit {
  rate!: Number
  roomCount!: Number
  url!:String
+ uname!: String
+ uaddress!: String
+ uzip!: String
+ ucity!: String
+ ustate!: String
+ urate!: Number
+ uroomCount!: Number
+ uurl!:String
+ uid!:String
+ currentHotel!:any
+ updateDisplay!:boolean
 
-  constructor(private hotel:HotelServiceService,
+  constructor(private auth:AuthService,
+              private hotel:HotelServiceService,
               private user:UserServiceService) { }
 
   ngOnInit(): void {
@@ -32,7 +45,28 @@ export class AdminComponent implements OnInit {
       console.log(data)
       this.hotels = data;
     });
+
   }
+getHotel(id:any){
+  this.hotel.getHotel(id).subscribe((data)=>{
+    this.currentHotel=data;
+    console.log(this.currentHotel)
+    this.uname=this.currentHotel.name
+    this.uaddress=this.currentHotel.address
+    this.ucity=this.currentHotel.city
+    this.uzip=this.currentHotel.zip
+    this.ustate=this.currentHotel.state
+    this.urate=this.currentHotel.rate
+    this.uroomCount=this.currentHotel.roomCount
+    this.uurl=this.currentHotel.url
+    this.uid=this.currentHotel._id
+  })
+  
+  this.updateDisplay=true
+
+  console.log(this.uurl)
+  
+}
 
 
   createHotel(){
@@ -73,9 +107,32 @@ export class AdminComponent implements OnInit {
       location.reload();
     })
   };
+updateHotel(){
+  const hotelData={
+    name: this.uname, 
+    address: this.uaddress,
+    zip: this.uzip,
+    city: this.ucity,
+    state:this.ustate,
+    rate: this.urate, 
+    roomCount: this.uroomCount,
+    url: this.uurl
+  }
+
+  this.hotel.updateHotel(this.uid,hotelData).subscribe((data:any)=>{
+
+      this.updateDisplay=!this.updateDisplay;
+  location.reload();
+  })
+
+}
+
 
   setTrue(){
     this.addHotel=!this.addHotel;
+  }
+  setUpdate(){
+    this.updateDisplay=!this.updateDisplay;
   }
 
 }

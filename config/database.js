@@ -1,4 +1,4 @@
 module.exports = {
-    database: 'mongodb://localhost:27017/Hotel-Booking-System',
+    database: 'mongodb+srv://eswarpd001:eswar001@my-application.pgrt9.mongodb.net/Hotel-Reservation-System?retryWrites=true&w=majority',
     secret: 'yoursecret'
 };

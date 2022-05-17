@@ -43,7 +43,7 @@ export class HotelServiceService {
       'Content-Type':  'application/json',
       'Authorization': this.authToken
     });
-    return this.http.delete("/users/api/admin/hotels/" + id,{headers: headers});
+    return this.http.delete("http://localhost:3000/users/api/admin/hotels/" + id,{headers: headers});
   }
   searchHotel(term: any) {
     const headers = new HttpHeaders({
@@ -51,6 +51,14 @@ export class HotelServiceService {
       'Authorization': this.authToken
     });
     return this.http.post("http://localhost:3000/users/api/hotels/search", { term: term },{headers: headers})
+  }
+  updateHotel(id:any,bookingData:any){
+    const headers = new HttpHeaders({
+      'Content-Type':  'application/json',
+      'Authorization': this.authToken
+    });
+    return this.http.put("http://localhost:3000/users/api/admin/updatehotel/"+ id,bookingData,{headers: headers})
+
   }
 
 

@@ -4,77 +4,39 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Add New Hotel
+						<h1 class="text-center">Add New Hotel</h1>
 					</div>
-					<div class="panel-body">
+					<div class="panel-body" style="width: 50%; margin: 0 auto;">
 						<form  name="hotelForm" class="form-horizontal" (submit)="createHotel()">
 							<div class="row control-group required-asterisk" style="padding-top: 5px;">
 								<label class="col-md-5 control-label">Hotel Name</label>
 								<input type="text" class="col-md-4" [(ngModel)]="name" name="name"
 									placeholder="Hotel Name" required>
 							</div>
-							<div class="row has-error" ng-show="hotelForm.submitAttempt && !hotelForm.$valid">
-								<div class="col-md-offset-5 col-md-3">
-									<span class="help-block" ng-show="hotelForm.name.$error.required">Hotel name is
-										required <br></span>
-								</div>
-							</div>
 							<div class="row control-group required-asterisk" style="padding-top: 5px;">
 								<label class="col-md-5 control-label">Hotel Address</label>
 								<input type="text" class="col-md-4" [(ngModel)]="address" name="address"
 									placeholder="Hotel Address" required>
-							</div>
-							<div class="row has-error" ng-show="hotelForm.submitAttempt && !hotelForm.$valid">
-								<div class="col-md-offset-5 col-md-3">
-									<span class="help-block"ng-show="hotelForm.address.$error.required">Hotel address
-										is required <br></span>
-								</div>
 							</div>
 							<div class="row control-group required-asterisk" style="padding-top: 5px;">
 								<label class="col-md-5 control-label">Zip Code</label>
 								<input type="text" class="col-md-4"[(ngModel)]="zip" name="zip"
 									placeholder="Zip code" required>
 							</div>
-							<div class="row has-error" ng-show="hotelForm.submitAttempt && !hotelForm.$valid">
-								<div class="col-md-offset-5 col-md-3">
-									<span class="help-block" ng-show="hotelForm.zip.$error.required">Zip code is
-										required <br></span>
-								</div>
-							</div>
 							<div class="row control-group required-asterisk" style="padding-top: 5px;">
 								<label class="col-md-5 control-label">City</label>
 								<input type="text" class="col-md-4"[(ngModel)]="city" name="city"
 									placeholder="City" required>
 							</div>
-							<div class="row has-error" ng-show="hotelForm.submitAttempt && !hotelForm.$valid">
-								<div class="col-md-offset-5 col-md-3">
-									<span class="help-block" ng-show="hotelForm.city.$error.required">City is required
-										<br></span>
-								</div>
-							</div>
 							<div class="row control-group required-asterisk" style="padding-top: 5px;">
 								<label class="col-md-5 control-label">State</label>
 								<input type="text" class="col-md-4" [(ngModel)]="state" name="state"
-									placeholder="Sate" required>
-							</div>
-							<div class="row has-error" ng-show="hotelForm.submitAttempt && !hotelForm.$valid">
-								<div class="col-md-offset-5 col-md-3">
-									<span class="help-block"  ng-show="hotelForm.state.$error.required">State is required
-										<br></span>
-								</div>
+									placeholder="State" required>
 							</div>
 							<div class="row control-group required-asterisk" style="padding-top: 5px;">
 								<label class="col-md-5 control-label">Room Rate</label>
 								<input type="text" class="col-md-4" [(ngModel)]="rate" name="rate"
 									placeholder="Room Rate" required data-ng-pattern="/^[0-9]+$/">
-							</div>
-							<div class="row has-error" ng-show="hotelForm.submitAttempt && !hotelForm.$valid">
-								<div class="col-md-offset-5 col-md-3">
-									<span class="help-block" ng-show="hotelForm.rate.$error.pattern">Rate must contain
-										only numbers <br></span>
-									<span class="help-block" ng-show="hotelForm.rate.$error.required">Rate is required
-										<br></span>
-								</div>
 							</div>
 							<div class="row control-group required-asterisk" style="padding-top: 5px;">
 								<label class="col-md-5 control-label">Room Count</label>
@@ -86,14 +48,6 @@
 								<input type="text" class="col-md-4" [(ngModel)]="url" name="url"
 									placeholder="url">
 							</div>
-							<div class="row has-error" ng-show="hotelForm.submitAttempt && !hotelForm.$valid">
-								<div class="col-md-offset-5 col-md-3">
-									<span class="help-block" ng-show="hotelForm.roomCount.$error.pattern">Room Count
-										must contain only numbers <br></span>
-									<span class="help-block" ng-show="hotelForm.roomCount.$error.required">Room count is
-										required <br></span>
-								</div>
-							</div>
 							<div class="row" style="padding-top: 5px;" align="center">
 								<button class="btn btn-primary" type="submit" value="Submit">Proceed</button>
 								<button class="btn btn-primary" (click)="setTrue()" type="button">cancel</button>
@@ -101,16 +55,132 @@
 						</form>
 					</div>
 				</div>
+
+				<!-- <div class="row" *ngIf="updateDisplay">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h1 class="text-center">Add New Hotel</h1>
+							</div>
+							<div class="panel-body" style="width: 50%; margin: 0 auto;">
+								<form  name="hotelForm" class="form-horizontal" (submit)="createHotel()">
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Hotel Name</label>
+										<input type="text" class="col-md-4" [(ngModel)]="uname" name="name"
+											placeholder="Hotel Name" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Hotel Address</label>
+										<input type="text" class="col-md-4" [(ngModel)]="uaddress" name="address"
+											placeholder="Hotel Address" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Zip Code</label>
+										<input type="text" class="col-md-4"[(ngModel)]="uzip" name="zip"
+											placeholder="Zip code" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">City</label>
+										<input type="text" class="col-md-4"[(ngModel)]="ucity" name="city"
+											placeholder="City" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">State</label>
+										<input type="text" class="col-md-4" [(ngModel)]="ustate" name="state"
+											placeholder="State" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Room Rate</label>
+										<input type="text" class="col-md-4" [(ngModel)]="urate" name="rate"
+											placeholder="Room Rate" required data-ng-pattern="/^[0-9]+$/">
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Room Count</label>
+										<input type="text" class="col-md-4" [(ngModel)]="uroomCount" name="roomCount"
+											placeholder="Room Count" required data-ng-pattern="/^[0-9]+$/">
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">url</label>
+										<input type="text" class="col-md-4" [(ngModel)]="uurl" name="url"
+											placeholder="url">
+									</div>
+									<div class="row" style="padding-top: 5px;" align="center">
+										<button class="btn btn-primary" type="submit" value="Submit">Proceed</button>
+										<button class="btn btn-primary" (click)="setTrue()" type="button">cancel</button>
+									</div>
+								</form>
+							</div>
+						</div> -->
 			</div>
 		</div>
+		<div class="row" ng-controller="AdminController">
+			<div class="col-md-12">
+							<div class="row" *ngIf="updateDisplay">
+					<div class="col-md-12">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<h1 class="text-center">Add New Hotel</h1>
+							</div>
+							<div class="panel-body" style="width: 50%; margin: 0 auto;">
+								<form  name="hotelForm" class="form-horizontal" (submit)="updateHotel()">
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Hotel Name</label>
+										<input type="text" class="col-md-4" [(ngModel)]="uname" name="name"
+											placeholder="Hotel Name" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Hotel Address</label>
+										<input type="text" class="col-md-4" [(ngModel)]="uaddress" name="address"
+											placeholder="Hotel Address" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Zip Code</label>
+										<input type="text" class="col-md-4"[(ngModel)]="uzip" name="zip"
+											placeholder="Zip code" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">City</label>
+										<input type="text" class="col-md-4"[(ngModel)]="ucity" name="city"
+											placeholder="City" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">State</label>
+										<input type="text" class="col-md-4" [(ngModel)]="ustate" name="state"
+											placeholder="State" required>
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Room Rate</label>
+										<input type="text" class="col-md-4" [(ngModel)]="urate" name="rate"
+											placeholder="Room Rate" required data-ng-pattern="/^[0-9]+$/">
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">Room Count</label>
+										<input type="text" class="col-md-4" [(ngModel)]="uroomCount" name="roomCount"
+											placeholder="Room Count" required data-ng-pattern="/^[0-9]+$/">
+									</div>
+									<div class="row control-group required-asterisk" style="padding-top: 5px;">
+										<label class="col-md-5 control-label">url</label>
+										<input type="text" class="col-md-4" [(ngModel)]="uurl" name="url"
+											placeholder="url">
+									</div>
+									<div class="row" style="padding-top: 5px;" align="center">
+										<button class="btn btn-primary" type="submit" value="Submit">Proceed</button>
+										<button class="btn btn-primary" (click)="setUpdate()" type="button">cancel</button>
+									</div>
+								</form>
+							</div>
+						</div>
+
+				</div>
+		</div>
+
 		<div class="row" ng-hide="addHotel">
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Current Hotels
+						<h3 class="text-center">Current Hotels</h3>
 					</div>
 					<div class="panel-body">
-						<button class="btn btn-primary" (click)="setTrue()">Add New Hotel</button>
 						<div class="table-responsive" style="padding-top:5px;">
 							<table id="hotels" class="table table-striped table-bordered table-hover">
 								<thead>
@@ -119,7 +189,8 @@
 										<th>Address</th>
 										<th>City, State</th>
 										<th>zip</th>
-										<th>Action</th>
+										<th>Actions</th>
+
 									</tr>
 								</thead>
 								<tbody>
@@ -128,12 +199,14 @@
 										<td>{{hotel.address}}</td>
 										<td>{{hotel.city}} - {{hotel.state}}</td>
 										<td>{{hotel.zip}}</td>
+										<button class="btn btn-danger" style="margin-left: 45px;margin-top: 10px;text-align: center;" (click)="getHotel(hotel._id)">Edit</button>
                                         <button class="btn btn-danger" style="margin-left: 45px;margin-top: 10px;text-align: center;" (click)="deleteHotel(hotel._id)">Delete</button>
 									<tr>
 								</tbody>
 							</table>
 						</div>
 					</div>
+					<button class="btn btn-primary" (click)="setTrue()">Add New Hotel</button>
 				</div>
 			</div>
 		</div>
@@ -142,7 +215,7 @@
 			<div class="col-md-12">
 				<div class="panel panel-default">
 					<div class="panel-heading">
-						Current Users
+						<h3 class="text-center">Current Users</h3>
 					</div>
 					<div class="panel-body">
 						<div class="table-responsive">
@@ -171,10 +244,3 @@
 		</div>
 	</div>
 </div> 
-
-
-<!-- 
-<div *ngFor="let user of users ; let i = index">
-    {{user.email}}
-  </div> -->
-  

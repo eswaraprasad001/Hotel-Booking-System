@@ -7,6 +7,7 @@
  const cors = require('cors'); // Allows to make request to API from different domain name
  const passport = require('passport');
  const mongoose = require('mongoose');
+ 
  // Routes
  const users = require('./routes/users');
  // Initialize app with express
