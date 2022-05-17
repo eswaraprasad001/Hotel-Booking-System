@@ -1,4 +1,4 @@
-<h2 class="text-center">Dashboard</h2>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,6 +10,7 @@
 	<!-- <link rel="stylesheet" type="text/css" href="css/style.css"> -->
 </head>
 <body>
+    <h2 class="text-center">Dashboard</h2>
     <div class="search">
         <input type="text" [(ngModel)]="term" class="searchTerm" placeholder="Type in your destination">
         <button type="submit" class="searchButton">
@@ -71,13 +72,13 @@
 									<ul class="hotel-checklist pl-0 mb-0">
 										<li><i class="fa fa-check text-success"></i> Premium Service</li>
 										<li><i class="fa fa-check text-success"></i> 24/7 Room Service</li>
-										<li><i class="fa fa-check text-success"></i> Hello World</li>
+										<li><i class="fa fa-check text-success"></i> Free Breakfast</li>
 									</ul>
 								</div>
 								<div class="hotel-card_pricing text-center">
 									<h3>₹{{hotel.rate}}</h3>
 									<div class="d-flex">
-										 <h6 class="text-striked text-muted mr-2">{{hotel.rate}}</h6>
+										 <h6 class="text-striked text-muted mr-2">{{hotel.rate + 1000}}</h6>
 										 <h6 class="text-success">32% off</h6>
 									</div>
 									<button class="btn btn-primary"  [routerLink]="['/booking']"[queryParams]="{_id: hotel._id}">Check Rooms</button>

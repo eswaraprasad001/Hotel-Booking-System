@@ -20,7 +20,9 @@ function isAdminLoggedIn(req, res, next) {
 	}
 	res.send("Not a Admin");
 }
-
+router.get('/hello',(req,res)=>{
+	res.send("Its Working")
+})
 
 
 // Register

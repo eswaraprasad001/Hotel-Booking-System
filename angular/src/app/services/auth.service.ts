@@ -11,8 +11,6 @@ export class AuthService {
   authToken: any|undefined;
    refreshToken : any|undefined
   user: any;
-  admin=true;
-
   
   constructor(private http: HttpClient) {
 
@@ -48,6 +46,7 @@ export class AuthService {
   }
 
 
+
   /**
    * Store user session data
    */
@@ -55,6 +54,7 @@ export class AuthService {
     localStorage.setItem('id_token', token);
     localStorage.setItem('refresh_token', refreshToken);
     localStorage.setItem('user', JSON.stringify(user));
+    localStorage.setItem('admin', user.isAdmin);
     this.authToken = token;
     this.user = user;
     // this.admin=this.user.isAdmin;
@@ -80,6 +80,11 @@ export class AuthService {
     return localStorage.getItem('id_token');
   }
 
+  isAdmin(){
+
+     const i= localStorage.getItem('admin')
+    return (i === 'true');;
+  }
 
   /** 
    * load token from local storage to use
