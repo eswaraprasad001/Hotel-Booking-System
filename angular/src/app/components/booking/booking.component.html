@@ -24,22 +24,22 @@
                         <ul>
                             <li>
                                 <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                20m² for 1 person.
                             </li>
                             <li>
                                 <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                Single bed.
                             </li>
                             <li>
                                 <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                Shower/WC, hair dryer, make-up mirror.
                             </li>
                         </ul>
                         <p>One of the most common types of room at any hotel is the single. Typically, this means that the room has one bed meant for one person or a couple, but it doesn't necessarily mean that the room is small. In fact, some hotels may offer larger rooms than others, depending on the size of the hotel itself. Often a single room is occupied by those traveling for business or those traveling alone who are not planning on staying for an extended period of time and don't need a lot of extra space. They're usually alone in the room and are using the space primarily for the purposes of sleeping and getting ready to go out. </p>
                         <p class = "rate">
-                            <span>₹1300.00 /</span> Per Night
+                            <span>₹{{this.currenthotel.rate*1}} /</span> Per Night
                         </p>
-                        <button type = "button" (click)="proceed()" [routerLink]="['/booking']" [queryParams]="{_id:hotelid,roomType:'Single Room',rate:'1300' }"  class = "btn">book now</button>
+                        <button type = "button" (click)="proceed()" [routerLink]="['/booking']" [queryParams]="{_id:hotelid,roomType:'Single Room',rate:currenthotel.rate*1 }"  class = "btn">book now</button>
                     </div>
                 </article>
                 <article class = "room">
@@ -51,22 +51,22 @@
                         <ul>
                             <li>
                                 <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                Smart TV with satellite channels.
                             </li>
                             <li>
                                 <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                Individually air conditioning system.
                             </li>
                             <li>
                                 <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                Coffee / Tea maker.
                             </li>
                         </ul>
                         <p>A deluxe room is one of the most popular choices of guests staying in 5-star hotels because of its comfort and supply of amenities, without being too over-the-top or expensive. It has at least two beds which can fit up to four people so is perfect for those traveling in a group or for small families. A living space is also provided which includes a table and chairs and tea and coffee makers with ample supplies. A minibar may also be included. Deluxe rooms are similar to double rooms but are more spacious and generally maintain more amenities and higher quality furniture. </p>
                         <p class = "rate">
-                            <span>₹2500.00 /</span> Per Night
+                            <span>₹{{this.currenthotel.rate*2}} /</span> Per Night
                         </p>
-                        <button type = "button"  (click)="proceed()" [routerLink]="['/booking']" [queryParams]="{_id:hotelid,roomType:'Deluxe Room',rate:'2500' }" class = "btn">book now</button>
+                        <button type = "button"  (click)="proceed()" [routerLink]="['/booking']" [queryParams]="{_id:hotelid,roomType:'Deluxe Room',rate:currenthotel.rate*2 }" class = "btn">book now</button>
                     </div>
                 </article>
                 <article class = "room">
@@ -78,24 +78,24 @@
                         <ul>
                             <li>
                                 <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                Kitchen facilities, like: fridge, coffee maker and microwave.
                             </li>
                             <li>
                                 <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                Essentially kit, like: soap, shampoo, body milk, conditioner
                             </li>
                             <li>
                                 <i class = "fas fa-arrow-alt-circle-right"></i>
-                                Lorem ipsum dolor sit amet.
+                                TV with cable.
                             </li>
                         </ul>
                         <p>For those traveling in larger groups, it can be a hassle to find rooms and book them all separately especially if they want to stay close to each other. A suite is made up of multiple rooms that are all connected by a common living area. This allows groups of people to have their personal space and separate living quarters without having to trek across the hotel to multiple rooms to plan something or even just hang out. Along with all the basic amenities, suites often also include a kitchenette, dining table, sofa bed, TV, and private bathrooms for each guest.
 
                             Suites come in many different sizes and configurations. They include different numbers of bedrooms, living rooms, dining areas, kitchens, and bathrooms. Some suites may even have balconies or terraces.</p>
                         <p class = "rate">
-                            <span>₹10000.00 /</span> Per Night
+                            <span>₹{{this.currenthotel.rate*4}} /</span> Per Night
                         </p>
-                        <button type = "button" (click)="proceed()" [routerLink]="['/booking']" [queryParams]="{_id:hotelid,roomType:'Suite Room',rate:'10000' }"  class = "btn">book now</button>
+                        <button type = "button" (click)="proceed()" [routerLink]="['/booking']" [queryParams]="{_id:hotelid,roomType:'Suite Room',rate:currenthotel.rate*4 }"  class = "btn">book now</button>
                     </div>
                 </article>
             </div>
@@ -138,7 +138,11 @@
 					<div class="col-md-5">
 						<div class="booking-cta">
 							<h1>Make  reservation</h1>
-							<p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Cupiditate laboriosam numquam at</p>
+							<p> This ain't the heartbreak hotel even though I know it well.
+                                Those no shows should you tell in the way you hold yourself.
+                                Don't you fret should you get another cancellation, give me a chance and I'll make a permanent reservation.
+                                In your heart in your,
+                                I can tell you fit one more</p>
 						</div>
 					</div>
 					<div class="col-md-6 col-md-offset-1">

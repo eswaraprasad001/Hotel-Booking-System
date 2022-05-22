@@ -28,5 +28,32 @@ export class ValidateService {
   validateLogin(user: { email?: string; password: any;}) {
     return !(user.email == undefined || user.password == undefined);
   }
+  validatePassword(password:string){
+    const re=/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/;
+    return re.test(password)
+  }
+  validateCheckInDate(date:Date){
+      var varDate = new Date(date); //dd-mm-YYYY
+      var today = new Date();
+      today.setHours(0,0,0,0);
+
+      if(varDate >= today) 
+      {
+       return true
+      }
+      return false
+
+  }
+  validateCheckOutDate(checkin:Date,checkout:Date){
+    var varDate = new Date(checkin); //dd-mm-YYYY
+    var date = new Date(checkout);
+
+    if(date > varDate) 
+    {
+     return true
+    }
+    return false
+
+}
 
 }

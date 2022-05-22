@@ -62,7 +62,9 @@
 										<!-- <li><i class="fa fa-check text-success"></i> ornare eget congue</li> -->
 										<br>
 									</ul>
+                                    <div *ngIf="!pBooking(booking.checkOutDate)">
 									<button class="btn btn-danger" (click)="cancelBooking(booking._id)">Cancel Booking</button>
+                                    </div>
 								</div>
 								<div class="hotel-card_pricing text-center">
 									<h3>₹{{booking.finalAmount}}</h3>
@@ -82,10 +84,5 @@
 
 	<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
 	<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"></script>
-	<script>
-		$(function () {
-			$('[data-toggle="tooltip"]').tooltip()
-		})
-	</script>
 </body>
 </html>

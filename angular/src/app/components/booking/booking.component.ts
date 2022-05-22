@@ -4,6 +4,7 @@ import { BookingServiceService } from 'src/app/services/booking-service.service'
 import { ActivatedRoute } from '@angular/router';
 import { Router } from "@angular/router";
 import { FlashMessagesService } from 'angular2-flash-messages';
+import { ValidateService } from 'src/app/services/validate.service';
 import { isPlatformBrowser } from '@angular/common';
 import { AfterViewInit,  ElementRef, Inject, Input, PLATFORM_ID, ViewChild } from '@angular/core';
 
@@ -32,8 +33,13 @@ export class BookingComponent implements OnInit {
   finalRate!:any;
   displayRate!:any
   finalAmount!:any
+  paymentHandler: any = null;
+  success: boolean = false
+  failure:boolean = false
+
   constructor(private route: ActivatedRoute,private hotel:HotelServiceService,
-    private booking:BookingServiceService,private router: Router, private flashMessagesService: FlashMessagesService) { }
+    private booking:BookingServiceService,private router: Router,
+    private validateService:ValidateService, private flashMessagesService: FlashMessagesService) { }
     
 
     
@@ -49,8 +55,10 @@ export class BookingComponent implements OnInit {
     ); 
       this.hotel.getHotel(this.hotelid).subscribe((data)=> {
         this.currenthotel = data;
-        //console.log(this.currenthotel)
+        console.log(this.currenthotel)
       });
+      this.invokeStripe();
+      //console.log(this.currenthotel)
   }
 
   bookHotel(){
@@ -68,29 +76,30 @@ export class BookingComponent implements OnInit {
     finalAmount:this.finalRate
     };
     this.finalRate=this.finalRate*this.noOfRooms
-    console.log(newBooking)
-    this.booking.createBooking(newBooking).subscribe((data:any)=> {
-      if(data.success){
-        console.log(data);
-      }
-    });
-    this.flashMessagesService.show('Your Booking is Confirmed', {cssClass: 'alert-success', timeout: 5000});
-        this.router.navigate(['viewBooking']);
+   
+    if(this.validateService.validateCheckInDate(this.checkInDate) && this.validateService.validateCheckOutDate(this.checkInDate,this.checkOutDate)) {
+
+      console.log(newBooking)
+      this.booking.createBooking(newBooking).subscribe((data:any)=> {
+        if(data.success){
+          console.log(data);
+        }
+      });
+      this.flashMessagesService.show('Your Booking is Confirmed', {cssClass: 'alert-success', timeout: 5000});
+          //this.router.navigate(['viewBooking']);
+      
+    }
+    else{
+      this.flashMessagesService.show('Please enter a valid Check-In & Check-Out date', { cssClass: 'alert-danger', timeout: 3000});
+    }
+    //this.flashMessagesService.show('Please enter a valid date', { cssClass: 'alert-danger', timeout: 3000});
+
   };
 
-  // backToSearch(){
-  //   this.flashMessagesService.show('You are now logged in as Admin', {cssClass: 'alert-success', timeout: 5000});
-  //   this.router.navigate(['dashboard']);
-  // }
   proceed(){
     this.display=!this.display
   }
-  // A single convolutional network simultaneously predicts multiple bounding boxes and class probabilities for those boxes. YOLO trains on full images and directly optimizes detection performance. This unified model has several benefits over traditional methods of object detection. First, YOLO is extremely fast. Since we frame detection as a regression problem we don’t need a complex pipeline. We simply run our neural network on a new image at test time to predict detections. Our base network runs at 45 frames per second with no batch processing on a Titan X GPU and a fast version runs at more than 150 fps. This means we can process streaming video in real-time with less than 25 milliseconds of latency.
 
-  // Second, YOLO reasons globally about the image when making predictions. Unlike sliding window and region proposal-based techniques, YOLO sees the entire image during training and test time so it implicitly encodes contextual information about classes as well as their appearance. Fast R-CNN, a top detection method, mistakes background patches in an image for objects because it can’t see the larger context. YOLO makes less than half the number of background errors compared to Fast R-CNN.
-  
-  // Third, YOLO learns generalizable representations of objects. When trained on natural images and tested on artwork, YOLO outperforms top detection methods like DPM and R-CNN by a wide margin. Since YOLO is highly generalizable it is less likely to break down when applied to new domains or unexpected inputs.
-  
 
 
 
@@ -104,8 +113,14 @@ export class BookingComponent implements OnInit {
      const delay = 200;
       this.timer = setTimeout(() => {
         if (!this.preventSingleClick) {
+          if(this.validateService.validateCheckInDate(this.checkInDate) && this.validateService.validateCheckOutDate(this.checkInDate,this.checkOutDate)){
         this.finalRate=this.finalAmount*this.noOfRooms;
+          }
+          else{
+            this.flashMessagesService.show('Please enter a valid Check-In & Check-Out date', { cssClass: 'alert-danger', timeout: 3000});
+          }
         //  this.displayRate=!this.displayRate
+        //console.log(this.validateService.validateCheckInDate(this.checkInDate) && this.validateService.validateCheckOutDate(this.checkInDate,this.checkOutDate))
         }
         
       }, delay);
@@ -114,8 +129,64 @@ export class BookingComponent implements OnInit {
     doubleClick (event: any) {
       this.preventSingleClick = true;
       clearTimeout(this.timer);
-      console.log("hello")
-      this.bookHotel()
+      
+      this.makePayment(this.finalRate)
     }
+
+    makePayment(amount: number) {
+      const paymentHandler = (<any>window).StripeCheckout.configure({
+        key: 'pk_test_51L1OJWSGdpiEKZzukoZv818ylyWxtEphgw1GKBZCjbIBpedk79fLj7EQZ3P2tELqNazSi8gqkyd6B4ohy25WfE3f00T9ElL96s',
+        locale: 'auto',
+        token: function (stripeToken: any) {
+          console.log(stripeToken);
+          paymentstripe(stripeToken);
+        },
+      });
+  
+      const paymentstripe = (stripeToken: any) => {
+        this.booking.makePayment(stripeToken,amount,this.email).subscribe((data: any) => {
+          console.log(data);
+          if (data.data === "success") {
+            this.bookHotel()
+            this.router.navigate(['dash'])
+          }
+          else {
+            this.failure = true
+          }
+        });
+      };
+  
+      paymentHandler.open({
+        name: 'StayCation',
+        description: 'Confirm your Booking',
+        amount: amount * 100,
+      });
+    }
+
+
+
+
+
+
+    invokeStripe() {
+      if (!window.document.getElementById('stripe-script')) {
+        const script = window.document.createElement('script');
+        script.id = 'stripe-script';
+        script.type = 'text/javascript';
+        script.src = 'https://checkout.stripe.com/checkout.js';
+        script.onload = () => {
+          this.paymentHandler = (<any>window).StripeCheckout.configure({
+            key: 'pk_test_51L1OJWSGdpiEKZzukoZv818ylyWxtEphgw1GKBZCjbIBpedk79fLj7EQZ3P2tELqNazSi8gqkyd6B4ohy25WfE3f00T9ElL96s',
+            locale: 'auto',
+            token: function (stripeToken: any) {
+              console.log(stripeToken);
+            },
+          });
+        };
+  
+        window.document.body.appendChild(script);
+      }
+    }
+
 
 }

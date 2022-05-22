@@ -21,6 +21,7 @@ body{
   padding: 40px 30px;
   box-shadow: 0 5px 10px rgba(0,0,0,0.2);
   perspective: 2700px;
+  z-index: 1;
 }
 .container .cover{
   position: absolute;

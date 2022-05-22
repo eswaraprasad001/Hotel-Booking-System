@@ -56,6 +56,16 @@ export class ViewBookingComponent implements OnInit {
       location.reload();
     });
   };
-
+   
+  pBooking(date1: any){
+    date1=new Date(date1)
+    if(date1<this.date){
+      return true
+    }
+    else{
+      return false
+      
+    }
+  }
 
 }

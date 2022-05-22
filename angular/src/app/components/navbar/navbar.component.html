@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- Created By CodingLab - www.codinglabweb.com -->
+
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
@@ -9,8 +9,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
   </head>
   <body>
+    <div class="links">
     <nav>
-      <div class="logo">StayCation</div>
+      <a class="logo" [routerLinkActive]="['active']" [routerLink]="['/']">StayCation</a>
       <input type="checkbox" id="click">
       <label for="click" class="menu-btn">
         <i class="fas fa-bars"></i>
@@ -47,5 +48,6 @@
   
       </ul>
     </nav>
+  </div>
   </body>
 </html>

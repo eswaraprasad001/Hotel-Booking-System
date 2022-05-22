@@ -3,6 +3,7 @@ import { Router } from "@angular/router";
 import {ValidateService} from "../../services/validate.service";
 import { FlashMessagesService } from "angular2-flash-messages";
 import {AuthService} from "../../services/auth.service";
+import { Validators, FormBuilder, FormGroup, FormControl, FormArray } from '@angular/forms';
 
 @Component({
   selector: 'app-register',
@@ -42,6 +43,16 @@ export class RegisterComponent implements OnInit {
       this.flashMessagesService.show('Please use a valid email', { cssClass: 'alert-danger', timeout: 3000});
       return false;
     }
+    if(!this.validateService.validatePassword(user.password)){
+      this.flashMessagesService.show('Please use Minimum eight characters, at least one letter and one number', { cssClass: 'alert-danger', timeout: 3000});
+      return false;
+    }
+    // this.matching_passwords_group = new FormGroup({
+    //   password: new FormControl('', Validators.compose([
+    //      Validators.minLength(5),
+    //      Validators.required,
+    //      Validators.pattern('^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])[a-zA-Z0-9]+$') //this is for the letters (both uppercase and lowercase) and numbers validation
+    //   ]))
     /** End Validations **/
 
     // Register User using Back-end

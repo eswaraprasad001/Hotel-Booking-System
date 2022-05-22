@@ -63,7 +63,15 @@ export class DashboardComponent implements OnInit {
       });
     };
 
-
+    count(count:any){
+      console.log(count)
+      if(count<=0){
+        return true
+      }
+      else{
+        return false
+      }
+    }
 
 
   }

@@ -43,5 +43,9 @@ export class BookingServiceService {
     return this.http.delete("http://localhost:3000/users/api/bookings/" + id,{headers: headers});
   }
 
+  makePayment(stripeToken: any,amount:any,email:any){
+
+    return this.http.post("http://localhost:3000/users/checkout",{token:stripeToken,amount:amount,email:email})
+  }
   }
 
